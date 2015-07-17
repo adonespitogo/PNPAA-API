@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/adonespitogo/PNPAA-API#readme",
   "dependencies": {
-    "restify": "^3.0.3"
+    "require-dir": "^0.3.0",
+    "restify": "^3.0.3",
+    "util": "^0.10.3"
   }
 }
