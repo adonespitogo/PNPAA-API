@@ -9,6 +9,6 @@ var server = restify.createServer({
 config(server);
 routes(server);
 
-server.listen('8080', function () {
+server.listen(process.env.PORT || '8080', function () {
   console.log('Restify server listening at ', server.url);
 });
