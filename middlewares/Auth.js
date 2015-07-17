@@ -1,3 +1,4 @@
+var restify = require('restify');
 
 module.exports = function (req, res, next) {
   var users;
