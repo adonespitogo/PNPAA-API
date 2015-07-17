@@ -1,0 +1,28 @@
+{
+  "name": "pnpaa-api",
+  "version": "0.0.1",
+  "description": "PNPAA restify api server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adonespitogo/PNPAA-API.git"
+  },
+  "keywords": [
+    "PNPAA",
+    "restify",
+    "api",
+    "server"
+  ],
+  "author": "Adones Pitogo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adonespitogo/PNPAA-API/issues"
+  },
+  "homepage": "https://github.com/adonespitogo/PNPAA-API#readme",
+  "dependencies": {
+    "restify": "^3.0.3"
+  }
+}
