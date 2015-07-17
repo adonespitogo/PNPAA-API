@@ -7,4 +7,6 @@ module.exports = function (server) {
 
   server.get('/', middlewares.Auth, controllers.HomeController.index);
 
+  server.post('/users', controllers.UsersController.create);
+
 };
