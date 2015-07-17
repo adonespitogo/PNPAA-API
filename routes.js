@@ -9,4 +9,6 @@ module.exports = function (server) {
 
   server.post('/users', controllers.UsersController.create);
 
+  server.post('/auth', controllers.AuthController.index);
+
 };

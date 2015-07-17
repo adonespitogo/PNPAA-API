@@ -1,6 +1,5 @@
 
 var User = require('../models/User');
-var util = require('util');
 var jwToken = require('../services/jsonwebtoken');
 
 module.exports = {
@@ -10,20 +9,29 @@ module.exports = {
       return next();
     }
     if (req.params.password !== req.params.confirmPassword) {
-      res.json(401, {err: 'Password doesn\'t match, What a shame!'});
+      res.json(401, {err: 'Password doesn\'t match.'});
       return next();
     }
-    User.create(req.params).then(function (user) {
-      // // If user created successfuly we return user and token as response
-        // NOTE: payload is { id: user.id}
-        console.log(util.inspect(user));
-      res.json(200, {user: user, token: jwToken.issue({id: user.id})});
-      return next();
+    var user = User.build(req.params);
+    user.setPassword(req.params.password)
+    .then(function (user) {
 
+      user.save()
+      .then(function (user) {
+        // // If user created successfuly we return user and token as response
+          // NOTE: payload is { id: user.id}
+        res.json(200, {user: user, token: jwToken.issue({id: user.id})});
+        return next();
+
+      })
+      .catch(function (err) {
+        var err = err.errors || err
+        res.json(422, err);
+        return next();
+      });
     })
     .catch(function (err) {
-      res.json(422, err.errors);
-      return next();
+      return next(err);
     });
   }
 };

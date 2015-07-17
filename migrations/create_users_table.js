@@ -8,13 +8,16 @@ module.exports = {
           primaryKey: true,
           autoIncrement: true
         },
-        name: DataTypes.STRING,
+        name: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
         email: {
           type: DataTypes.STRING,
           unique: true,
           allowNull: false
         },
-        password: {
+        encryptedPassword: {
           type: DataTypes.STRING,
           allowNull: false
         },
