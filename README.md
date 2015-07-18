@@ -1,2 +1,6 @@
 # PNPAA Restify Server
-PNPAA API Server (Restify) - http://restify.com
+
+Stack
+-----
+ - [Restify NodeJS Framework](http://restify.com)
+ - [Sequelize ORM](http://sequelize.readthedocs.org)
