@@ -44,11 +44,12 @@ var User = sequelize.define('User', {
       comparePassword: function (password, cb) {
         var user = this;
         bcrypt.compare(password, user.encryptedPassword, function (err, match) {
-          if(err) cb(err);
+          if(err) return cb(err);
           if (match) {
-            return cb(null);
-          }else{
-            cb(err);
+            return cb(null, true);
+          }
+          else{
+            return cb(err);
           }
         });
       },

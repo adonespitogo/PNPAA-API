@@ -14,9 +14,13 @@ module.exports = {
     Users.findOne({where: {email: email}})
     .then(function (user) {
 
-      user.comparePassword(password, function (err) {
+      user.comparePassword(password, function (err, match) {
+        if (!match) {
+          res.send(401, "Invalid password");
+          return next();
+        }
         if (err) {
-          return next(new Error('Invalid password'));
+          return next(err);
         }
         res.json({
           user: user,
