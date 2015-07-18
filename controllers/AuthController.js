@@ -29,6 +29,10 @@ module.exports = {
       res.json(404, 'User with email ' + email + ' does not exist');
       return next();
     });
+  },
+  verify: function (req, res, next) {
+    res.send(200);
+    return next();
   }
 };
 

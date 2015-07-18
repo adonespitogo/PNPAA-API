@@ -10,6 +10,7 @@ module.exports = function (server) {
   server.get('/', jwt({secret: jwtSecret}), controllers.HomeController.index);
   server.post('/users', controllers.UsersController.create);
   server.post('/auth', controllers.AuthController.index);
+  server.post('/auth/verify', jwt({secret: jwtSecret}), controllers.AuthController.verify);
 
 
 
