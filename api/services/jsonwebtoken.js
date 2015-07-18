@@ -1,7 +1,7 @@
 
 var
   jwt = require('jsonwebtoken'),
-  tokenSecret = require('../config/jwt_secret');
+  tokenSecret = require('../../config/jwt_secret');
 
 // Generates a token from supplied payload
 module.exports.issue = function(payload) {

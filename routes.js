@@ -1,7 +1,7 @@
 var restify = require('restify');
 var reqDir = require('require-dir');
-var controllers = reqDir('./controllers');
-var middlewares = reqDir('./middlewares');
+var controllers = reqDir('./api/controllers');
+var middlewares = reqDir('./api/middlewares');
 var jwt = require('restify-jwt');
 var jwtSecret = require('./config/jwt_secret');
 
