@@ -1,12 +1,4 @@
 
-31
-/**
- * jwToken
- *
- * @description :: JSON Webtoken Service for sails
- * @help        :: See https://github.com/auth0/node-jsonwebtoken & http://sailsjs.org/#!/documentation/concepts/Services
- */
-
 var
   jwt = require('jsonwebtoken'),
   tokenSecret = require('../config/jwt_secret');
