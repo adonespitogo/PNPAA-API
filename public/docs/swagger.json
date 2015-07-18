@@ -1,0 +1,77 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "PNPAA Restify Server API",
+    "version" : "1.0.0",
+    "title" : "PNPAA API"
+  },
+  "host" : "pnpaa-api.herokuapp.com",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/auth" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "description" : "Get authentication token",
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "formData",
+          "description" : "User's username.",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        }, {
+          "name" : "password",
+          "in" : "formData",
+          "description" : "User's password.",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Auth Token Object",
+            "schema" : {
+              "$ref" : "#/definitions/AuthToken"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "User" : {
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "createdAt" : {
+          "type" : "string",
+          "description" : "DateTime"
+        },
+        "updatedAt" : {
+          "type" : "string",
+          "description" : "DateTime"
+        }
+      }
+    },
+    "AuthToken" : {
+      "properties" : {
+        "user" : {
+          "$ref" : "#/definitions/User"
+        },
+        "token" : {
+          "type" : "string",
+          "description" : "Token to be used for ever api call."
+        }
+      }
+    }
+  }
+}
