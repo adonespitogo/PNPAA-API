@@ -39,28 +39,3 @@ module.exports = {
     return next();
   }
 };
-
-// function (err, user) {
-//       if (!user) {
-//         res.json(401, {err: 'Invalid email or password.'});
-//         return next();
-//       }
-
-//       Users.comparePassword(password, user, function (err, valid) {
-//         if (err) {
-//           res.json(403, {err: 'forbidden'});
-//           return next();
-//         }
-
-//         if (!valid) {
-//           res.json(401, {err: 'invalid email or password'});
-//           return next();
-//         } else {
-//           res.json({
-//             user: user,
-//             token: jwToken.issue({id : user.id })
-//           });
-//           return next();
-//         }
-//       });
-//     }
