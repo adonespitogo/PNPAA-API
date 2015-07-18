@@ -1,7 +1,7 @@
 
 module.exports = {
   index: function (req, res, next) {
-    res.json({'hello': 'world'});
+    res.json(req.user);
     return next();
   }
 };

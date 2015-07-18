@@ -1,24 +1,46 @@
-var restify = require('restify');
+// var restify = require('restify');
+// var jwToken = require('../services/jsonwebtoken');
+// var User = require('../models/User');
 
-module.exports = function (req, res, next) {
-  var users;
+// module.exports = function (req, res, next) {
 
-  users = {
-      foo: {
-          id: 1,
-          password: 'bar'
-      }
-  };
+//   if (req.authorization) {
 
-  // Ensure that user is not anonymous; and
-  // That user exists; and
-  // That user password matches the record in the database.
-  if (req.username == 'anonymous' || !users[req.username] || req.authorization.basic.password !== users[req.username].password) {
-      // Respond with { code: 'NotAuthorized', message: '' }
-      next(new restify.NotAuthorizedError());
-  } else {
-      next();
-  }
+//     if (req.authorization.credentials) {
+//       jwToken.verify(req.authorization.credentials, function (err, payload) {
+//         if (err) {
+//           res.json(401, {err: 'Invalid Token!'});
+//           return next();
+//         }
 
-  next();
-};
+//         User.findOne({where: {id: payload.id}})
+//         .then(function (user) {
+
+//           if (!user) {
+//             // res.status(403);
+//             return next(new Error(403));
+//           }
+
+//           req['user'] = user.dataValues;
+//           return next();
+//         })
+//         .catch(function () {
+//           return next(new restify.NotAuthorizedError());
+//         });
+
+//         next();
+//       });
+//     }else {
+//       res.send(403, "Authorization header not found");
+//       return next();
+//     }
+
+//   }else {
+//     res.send(403, "Authorization header not found");
+//     return next();
+//   }
+
+// };
+
+
+// // next(new restify.NotAuthorizedError());

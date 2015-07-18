@@ -21,6 +21,10 @@ module.exports = {
           type: DataTypes.STRING,
           allowNull: false
         },
+        salt: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
         createdAt: {
           type: DataTypes.DATE
         },

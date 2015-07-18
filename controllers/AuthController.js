@@ -13,21 +13,20 @@ module.exports = {
 
     Users.findOne({where: {email: email}})
     .then(function (user) {
-      user.comparePassword(password)
-      .then(function () {
+
+      user.comparePassword(password, function (err) {
+        if (err) {
+          return next(new Error('Invalid password'));
+        }
         res.json({
           user: user,
-          token: jwToken.issue({id : user.id })
+          token: jwToken.issue({id: user.id})
         });
-        return next();
-      })
-      .catch(function () {
-        res.json(401, "Incorrect password");
         return next();
       });
     })
     .catch(function (err) {
-      res.json(404, 'User with email ' + email + 'does not exist');
+      res.json(404, 'User with email ' + email + ' does not exist');
       return next();
     });
   }

@@ -10,5 +10,5 @@ config(server);
 routes(server);
 
 server.listen(process.env.PORT || '8080', function () {
-  console.log('Restify server listening at ', server.url);
+  console.log('Restify server listening at', 'http://localhost:8080');
 });

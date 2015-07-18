@@ -17,7 +17,12 @@ var User = sequelize.define('User', {
         isEmail: true      }
     },
     encryptedPassword: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      notEmpty: true
+    },
+    salt: {
+      type: Sequelize.STRING,
+      notEmpty: true
     }
   }, {
     classMethods: {},
@@ -29,25 +34,28 @@ var User = sequelize.define('User', {
           if(err) return deferred.reject(err);
           bcrypt.hash(password, salt, function (err, hash) {
             if(err) return deferred.reject(err);
+            user.setDataValue('salt', salt);
             user.setDataValue('encryptedPassword', hash);
             deferred.resolve(user);
           })
         });
         return deferred.promise;
       },
-      comparePassword: function (password) {
-        var deferred = Q.defer();
-        bcrypt.compare(password, this.encryptedPassword, function (err, match) {
-          if(err || !match) deferred.reject(err);
-          else{
-            deferred.resolve(null, true);
+      comparePassword: function (password, cb) {
+        var user = this;
+        bcrypt.compare(password, user.encryptedPassword, function (err, match) {
+          if(err) cb(err);
+          if (match) {
+            return cb(null);
+          }else{
+            cb(err);
           }
         });
-        return deferred.promise;
       },
       toJSON: function () {
         var val = this.get({plain:true});
         delete val.encryptedPassword;
+        delete val.salt;
         return val;
       }
     }
