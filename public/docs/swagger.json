@@ -19,15 +19,13 @@
           "in" : "formData",
           "description" : "User's username.",
           "required" : true,
-          "type" : "string",
-          "format" : "string"
+          "type" : "string"
         }, {
           "name" : "password",
           "in" : "formData",
           "description" : "User's password.",
           "required" : true,
-          "type" : "string",
-          "format" : "string"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -35,6 +33,27 @@
             "schema" : {
               "$ref" : "#/definitions/AuthToken"
             }
+          }
+        }
+      }
+    },
+    "/auth/verify" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "description" : "Very if token is valid",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization header. Format: `Bearer [token]`.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Token is valid"
+          },
+          "401" : {
+            "description" : "Token is has expired or has been revoked"
           }
         }
       }
@@ -52,13 +71,13 @@
         "email" : {
           "type" : "string"
         },
-        "createdAt" : {
-          "type" : "string",
-          "description" : "DateTime"
+        "createdAt": {
+          "type": "string",
+          "format": "dateTime"
         },
-        "updatedAt" : {
-          "type" : "string",
-          "description" : "DateTime"
+        "updatedAt": {
+          "type": "string",
+          "format": "dateTime"
         }
       }
     },
@@ -69,7 +88,7 @@
         },
         "token" : {
           "type" : "string",
-          "description" : "Token to be used for ever api call."
+          "description" : "Token to be used for every api call."
         }
       }
     }
