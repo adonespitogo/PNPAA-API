@@ -1,4 +1,4 @@
-var db = require('../config/database');
+var db = require('../config/sequelize');
 var Sequelize = db.Sequelize;
 var sequelize = db.sequelize;
 var bcrypt = require('bcrypt');
