@@ -7,12 +7,9 @@ var server = restify.createServer({
   name: "PNPAA Restify Server"
 });
 
-config(server).then(function () {
+config(server);
+routes(server);
 
-  routes(server);
-
-  server.listen( port, function () {
-    console.log('Restify server listening at', 'http://localhost:'+port);
-  });
-
+server.listen( port, function () {
+  console.log('Restify server listening at', 'http://localhost:'+port);
 });

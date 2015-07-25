@@ -18,11 +18,17 @@ var User = sequelize.define('User', {
     },
     encryptedPassword: {
       type: Sequelize.STRING,
-      notEmpty: true
+      notEmpty: true,
+      get: function () {
+        return null;
+      }
     },
     salt: {
       type: Sequelize.STRING,
-      notEmpty: true
+      notEmpty: true,
+      get: function () {
+        return null;
+      }
     }
   }, {
     classMethods: {},
@@ -42,7 +48,7 @@ var User = sequelize.define('User', {
         return deferred.promise;
       },
       comparePassword: function (password, cb) {
-        var user = this;
+        var user = this.dataValues;
         bcrypt.compare(password, user.encryptedPassword, function (err, match) {
           if(err) return cb(err);
           if (match) {

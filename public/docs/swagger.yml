@@ -31,6 +31,9 @@ paths:
           description: Auth Token Object
           schema:
             $ref: '#/definitions/AuthToken'
+        '401':
+          description: Unable to login
+          type: string
   /auth/verify:
     post:
       tags:

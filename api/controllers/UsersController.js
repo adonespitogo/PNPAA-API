@@ -18,14 +18,13 @@ module.exports = {
 
       user.save()
       .then(function (user) {
-        // // If user created successfuly we return user and token as response
-          // NOTE: payload is { id: user.id}
+        // If user created successfuly we return user and token as response
         res.json(200, {user: user, token: jwToken.issue({id: user.id})});
         return next();
 
       })
       .catch(function (err) {
-        var err = err.errors || err
+        err = err.errors || err
         res.json(422, err);
         return next();
       });
