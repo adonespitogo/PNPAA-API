@@ -18,7 +18,7 @@ paths:
       parameters:
         - name: email
           in: formData
-          description: "User's username."
+          description: User's username.
           required: true
           type: string
         - name: password
@@ -52,6 +52,25 @@ paths:
           description: Token is has expired or has been revoked
 
   /discussions:
+    get:
+      tags:
+        - Discussion
+      description: Get all general discussions
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Authorization header. Format: `Bearer [token]`.'
+          required: true
+          type: string
+
+      responses:
+        '200':
+          description: Array of discussion objects
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discussion'
+
     post:
       tags:
         - Discussion
@@ -62,7 +81,7 @@ paths:
           description: 'Authorization header. Format: `Bearer [token]`.'
           required: true
           type: string
-        - name: Content
+        - name: content
           in: formData
           description: Content of the post
           type: string
@@ -70,10 +89,29 @@ paths:
 
       responses:
         '200':
-          description: Token is valid
-        '401':
-          description: Token is has expired or has been revoked
+          description: Post created successfully
+          schema:
+            $ref: '#/definitions/Discussion'
+        '422':
+          description: Array of validation errors
 definitions:
+  Discussion:
+    properties:
+      id:
+        type: number
+      content:
+        type: string
+      UserId:
+        type: number
+      User:
+        schema:
+          $ref: '#/definitions/User'
+      createdAt:
+        type: string
+        format: dateTime
+      updatedAt:
+        type: string
+        format: dateTime
   User:
     properties:
       id:
@@ -88,6 +126,7 @@ definitions:
       updatedAt:
         type: string
         format: dateTime
+
   AuthToken:
     properties:
       user:
