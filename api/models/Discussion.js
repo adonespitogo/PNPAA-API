@@ -15,6 +15,9 @@ var Discussion = sequelize.define('Discussion', {
   },
   createdAt: Sequelize.DATE,
   updatedAt: Sequelize.DATE
+}, {
+  classMethods: {},
+  instanceMethods: {}
 });
 
 Discussion.belongsTo(User);

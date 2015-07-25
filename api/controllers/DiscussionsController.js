@@ -23,8 +23,12 @@ module.exports.create = function (req, res, next) {
   discussion.UserId = req.user.id;
   Discussion.create(discussion)
   .then(function (dbDiscussion) {
-    res.json(dbDiscussion);
-    return next();
+    dbDiscussion.getUser().then(function (dbUser) {
+      discussion = dbDiscussion.dataValues;
+      discussion.User = dbUser.toJSON();
+      res.json(discussion);
+      return next();
+    });
   })
   .catch(function (err) {
     err = err.errors || err
