@@ -95,7 +95,7 @@ paths:
         '422':
           description: Array of validation errors
 
-  /discussions/[id]:
+  /discussions/{id}:
     put:
       tags:
         - Discussion
@@ -106,6 +106,11 @@ paths:
           description: 'Authorization header. Format: `Bearer [token]`.'
           required: true
           type: string
+        - name: id
+          in: path
+          description: Discussion id
+          type: integer
+          required: true
         - name: content
           in: formData
           description: Content of the post
@@ -131,6 +136,11 @@ paths:
           description: 'Authorization header. Format: `Bearer [token]`.'
           required: true
           type: string
+        - name: id
+          in: path
+          description: Discussion id
+          type: integer
+          required: true
 
       responses:
         '200':
