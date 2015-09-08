@@ -44,8 +44,12 @@ module.exports.update = function (req, res, next) {
 
   discussion.updateAttributes(newAttrs, {fields: ['content']})
   .then(function (dbDiscussion) {
-    res.json(200, dbDiscussion);
-    return next();
+    dbDiscussion.getUser().then(function (dbUser) {
+      discussion = dbDiscussion.dataValues;
+      discussion.User = dbUser.toJSON();
+      res.json(discussion);
+      return next();
+    });
   })
   .catch(function (err) {
     res.json(422, err);

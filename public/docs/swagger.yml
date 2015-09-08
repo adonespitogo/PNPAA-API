@@ -94,6 +94,33 @@ paths:
             $ref: '#/definitions/Discussion'
         '422':
           description: Array of validation errors
+
+  /discussions/[id]:
+    put:
+      tags:
+        - Discussion
+      description: Update discussion
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Authorization header. Format: `Bearer [token]`.'
+          required: true
+          type: string
+        - name: content
+          in: formData
+          description: Content of the post
+          type: string
+          required: true
+
+      responses:
+        '200':
+          description: Post updated successfully
+          schema:
+            $ref: '#/definitions/Discussion'
+        '401':
+          description: Unauthorized
+        '422':
+          description: Array of validation errors
 definitions:
   Discussion:
     properties:
@@ -103,6 +130,8 @@ definitions:
         type: string
       UserId:
         type: number
+      isPublic:
+        type: boolean
       User:
         schema:
           $ref: '#/definitions/User'
