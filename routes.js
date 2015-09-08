@@ -29,6 +29,12 @@ module.exports = function (server) {
     middlewares.Discussion.isOwner,
     controllers.DiscussionsController.update
   );
+  server.del(
+    '/discussions/:discussionId',
+    middlewares.Auth,
+    middlewares.Discussion.isOwner,
+    controllers.DiscussionsController.delete
+  );
 
   // serve static files
   server.get(/.*/, restify.serveStatic({

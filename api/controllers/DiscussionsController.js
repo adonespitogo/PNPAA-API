@@ -56,3 +56,16 @@ module.exports.update = function (req, res, next) {
     return next();
   });
 };
+
+module.exports.delete = function (req, res, next) {
+  var discussion = req.discussion;
+
+  discussion.destroy()
+  .then(function () {
+    res.json(200);
+    return next();
+  })
+  .catch(function (err) {
+    res.json(400, err);
+  });
+};

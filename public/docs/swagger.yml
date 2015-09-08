@@ -121,6 +121,23 @@ paths:
           description: Unauthorized
         '422':
           description: Array of validation errors
+    delete:
+      tags:
+        - Discussion
+      description: Delete discussion
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Authorization header. Format: `Bearer [token]`.'
+          required: true
+          type: string
+
+      responses:
+        '200':
+          description: Post deleted successfully
+        '401':
+          description: Unauthorized
+
 definitions:
   Discussion:
     properties:
