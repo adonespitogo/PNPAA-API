@@ -11,5 +11,5 @@ config(server);
 routes(server);
 
 server.listen( port, function () {
-  console.log('Restify server listening at', 'http://localhost:'+port);
+  console.log('Restify server listening at', 'http://localhost:' + port);
 });

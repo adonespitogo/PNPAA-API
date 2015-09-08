@@ -21,6 +21,7 @@ module.exports.index = function (req, res, next) {
 module.exports.create = function (req, res, next) {
   var discussion = req.params;
   discussion.UserId = req.user.id;
+
   Discussion.create(discussion)
   .then(function (dbDiscussion) {
     dbDiscussion.getUser().then(function (dbUser) {
@@ -32,6 +33,21 @@ module.exports.create = function (req, res, next) {
   })
   .catch(function (err) {
     err = err.errors || err
+    res.json(422, err);
+    return next();
+  });
+};
+
+module.exports.update = function (req, res, next) {
+  var newAttrs = req.params;
+  var discussion = req.discussion;
+
+  discussion.updateAttributes(newAttrs, {fields: ['content']})
+  .then(function (dbDiscussion) {
+    res.json(200, dbDiscussion);
+    return next();
+  })
+  .catch(function (err) {
     res.json(422, err);
     return next();
   });
