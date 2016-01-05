@@ -45,7 +45,7 @@ module.exports.create = function (req, res, next) {
 };
 
 module.exports.show = function  (req, res, next) {
-  Discussion.findOne({ where: {id: req.params.id} })
+  Discussion.findOne({ where: {id: req.params.discussionId} })
   .then(function (dbDiscussion) {
     var discussion = dbDiscussion.dataValues;
     discussion.User = dbUser.toJSON();

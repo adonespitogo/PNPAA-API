@@ -18,6 +18,13 @@ module.exports = function (server) {
     middlewares.Auth,
     controllers.DiscussionsController.index
   );
+
+  server.get(
+    '/discussions/:discussionId',
+    middlewares.Auth,
+    controllers.DiscussionsController.show
+  );
+
   server.post(
     '/discussions',
     middlewares.Auth,
