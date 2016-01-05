@@ -63,6 +63,18 @@ paths:
           required: true
           type: string
 
+        - name: offset
+          in: query
+          description: 'Query offset (for pagination)'
+          required: false
+          type: number
+
+        - name: limit
+          in: query
+          description: 'Query limit (for pagination)'
+          required: false
+          type: number
+
       responses:
         '200':
           description: Array of discussion objects

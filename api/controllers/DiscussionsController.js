@@ -9,6 +9,12 @@ module.exports.index = function (req, res, next) {
       {model: User}
     ]
   };
+  if (req.params.offset) {
+    query.offset = req.params.offset;
+  }
+  if (req.params.limit) {
+    query.limit = req.params.limit;
+  }
   Discussion.findAll(query).then(function (discussions) {
     res.json(discussions);
     return next();
