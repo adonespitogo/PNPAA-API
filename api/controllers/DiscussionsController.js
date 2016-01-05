@@ -44,6 +44,21 @@ module.exports.create = function (req, res, next) {
   });
 };
 
+module.exports.show = function  (req, res, next) {
+  Discussion.findOne({ where: {id: req.params.id} })
+  .then(function (dbDiscussion) {
+    var discussion = dbDiscussion.dataValues;
+    discussion.User = dbUser.toJSON();
+    res.json(discussion);
+    return next();
+  })
+  .catch(function (err) {
+    err = err.errors || err
+    res.json(422, err);
+    return next();
+  });
+};
+
 module.exports.update = function (req, res, next) {
   var newAttrs = req.params;
   var discussion = req.discussion;

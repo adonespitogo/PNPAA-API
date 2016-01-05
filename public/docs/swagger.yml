@@ -101,17 +101,34 @@ paths:
 
       responses:
         '200':
-          description: Post created successfully
+          description: 'Post created successfully'
           schema:
             $ref: '#/definitions/Discussion'
         '422':
           description: Array of validation errors
 
   /discussions/{id}:
+    get:
+      tags:
+        - Discussion
+      description: 'Get single discussion'
+      parameters:
+        - name: Authorization
+          in: header
+          description: 'Authorization header. Format: `Bearer [token]`.'
+          required: true
+          type: string
+
+        - name: id
+          in: path
+          description: 'Discussion id'
+          required: true
+          type: number
+
     put:
       tags:
         - Discussion
-      description: Update discussion
+      description: 'Update discussion'
       parameters:
         - name: Authorization
           in: header
